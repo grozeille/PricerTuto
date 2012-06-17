@@ -18,5 +18,7 @@ namespace PricerTuto
         IList<double> GetListedStrikes(string underlying);
 
         IList<DateTime> GetListedMaturities(string underlying);
+
+        double GetInterestRate();
     }
 }

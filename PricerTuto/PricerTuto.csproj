@@ -60,12 +60,14 @@
   <ItemGroup>
     <Compile Include="BlackSholes.cs" />
     <Compile Include="BuyOrSell.cs" />
+    <Compile Include="DefaultDateService.cs" />
     <Compile Include="GoogleDate.cs" />
     <Compile Include="GoogleMarketDataService.cs" />
     <Compile Include="GoogleOptionData.cs" />
     <Compile Include="GoogleOptionItem.cs" />
     <Compile Include="GoogleQuote.cs" />
     <Compile Include="HistoricalData.cs" />
+    <Compile Include="IDateService.cs" />
     <Compile Include="IMarketDataService.cs" />
     <Compile Include="MarketOption.cs" />
     <Compile Include="Maturity.cs" />

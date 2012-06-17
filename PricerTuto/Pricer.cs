@@ -7,11 +7,15 @@ namespace PricerTuto
 {
     public class Pricer
     {
-        public Option Price(OptionType optionType, string underlyingName, DateTime maturity, double strike)
-        {
-            return Price(optionType, underlyingName, maturity, strike, this.GetSpot(underlyingName), this.GetVolatility(underlyingName), this.GetInterestRate());
-        }
+        public IDateService DateService { get; set; }
 
+        public IMarketDataService MarketDataService { get; set; }
+
+        public Pricer()
+        {
+            this.DateService = new DefaultDateService();
+        }
+        
         public Option Price(OptionType optionType, string underlyingName, DateTime maturity, double strike, double spot, double volatility, double interestRate)
         {
             Option option = new Option();
@@ -33,7 +37,7 @@ namespace PricerTuto
 
             option.Volatility = volatility;
             option.InterestRate = interestRate;
-            var timeToExpirationYears = maturity.Subtract(DateTime.Now).TotalDays / 260.0;
+            var timeToExpirationYears = maturity.Subtract(this.DateService.Now).TotalDays / 260.0;
             option.Price = BlackSholes.Price(
                 optionType, 
                 option.Spot, 
@@ -59,19 +63,13 @@ namespace PricerTuto
             return option;
         }
 
-        private double GetInterestRate()
+        public Option PriceWithMarketData(OptionType optionType, string underlyingName, DateTime maturity, double strike)
         {
-            throw new NotImplementedException();
-        }
+            double spot = this.MarketDataService.GetSpot(underlyingName);
+            double volatility = this.MarketDataService.GetHistoricalVolatility(underlyingName, this.DateService.Now, (int)maturity.Subtract(this.DateService.Now).TotalDays);
+            double interestRate = this.MarketDataService.GetInterestRate();
 
-        private double GetVolatility(string underlyingName)
-        {
-            throw new NotImplementedException();
-        }
-
-        private double GetSpot(string underlyingName)
-        {
-            throw new NotImplementedException();
+            return this.Price(optionType, underlyingName, maturity, strike, spot, volatility, interestRate);
         }
     }
 }

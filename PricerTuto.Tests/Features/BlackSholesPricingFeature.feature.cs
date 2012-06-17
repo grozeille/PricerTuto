@@ -11,7 +11,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace Pricer.Tests.Features
+namespace PricerTuto.Tests.Features
 {
     using TechTalk.SpecFlow;
     
@@ -97,10 +97,13 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Be able to price an european Put")]
-        public virtual void BeAbleToPriceAnEuropeanPut()
+        [NUnit.Framework.DescriptionAttribute("Be able to price an european Option")]
+        [NUnit.Framework.TestCaseAttribute("Put", "564.51", "565", "6 months", "0.01", "0.225", "43.95", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("Call", "564.51", "565", "6 months", "0.01", "0.225", "43.95", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("Call", "564.51", "565", "1 year", "0.01", "0.225", "63.32", new string[0])]
+        public virtual void BeAbleToPriceAnEuropeanOption(string type, string spot, string strike, string maturity, string rate, string volatility, string price, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be able to price an european Put", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be able to price an european Option", exampleTags);
 #line 13
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -112,18 +115,50 @@ this.ScenarioSetup(scenarioInfo);
                         "rate",
                         "volatility"});
             table2.AddRow(new string[] {
-                        "Put",
-                        "564.51",
-                        "565",
-                        "6 months",
-                        "0.01",
-                        "0.225"});
+                        string.Format("{0}", type),
+                        string.Format("{0}", spot),
+                        string.Format("{0}", strike),
+                        string.Format("{0}", maturity),
+                        string.Format("{0}", rate),
+                        string.Format("{0}", volatility)});
 #line 14
  testRunner.Given("the following option:", ((string)(null)), table2);
 #line 17
  testRunner.When("I compute the price");
 #line 18
- testRunner.Then("the result should be 40.49");
+ testRunner.Then(string.Format("the result should be {0}", price));
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Be able to price an european Call with market data")]
+        public virtual void BeAbleToPriceAnEuropeanCallWithMarketData()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Be able to price an european Call with market data", ((string[])(null)));
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.Given("the market rate: 0.01");
+#line 28
+ testRunner.And("the market spot for underlying \"NASDAQ:GOOG\": 564.51");
+#line 29
+ testRunner.And("the market volatility for underlying \"NASDAQ:GOOG\" since 6 months: 0.225");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "type",
+                        "strike",
+                        "maturity",
+                        "underlying"});
+            table3.AddRow(new string[] {
+                        "Call",
+                        "565",
+                        "6 months",
+                        "NASDAQ:GOOG"});
+#line 30
+ testRunner.When("I compute the price with market data the option:", ((string)(null)), table3);
+#line 33
+ testRunner.Then("the result should be 43.95");
 #line hidden
             this.ScenarioCleanup();
         }

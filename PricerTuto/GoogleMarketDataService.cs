@@ -173,5 +173,10 @@ namespace PricerTuto
                 
             }
         }
+
+        public double GetInterestRate()
+        {
+            return 0.01;
+        }
     }
 }

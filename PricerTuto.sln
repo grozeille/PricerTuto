@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{66BD4F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pricer.Tests", "Pricer.Tests\Pricer.Tests.csproj", "{8E8D1F11-D526-463C-A10A-90D709434EDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PricerTuto.Tests", "PricerTuto.Tests\PricerTuto.Tests.csproj", "{8E8D1F11-D526-463C-A10A-90D709434EDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
