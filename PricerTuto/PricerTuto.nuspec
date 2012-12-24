@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <version>1.0.0.0</version>
+    <authors>Mathias Kluba</authors>
+    <owners>Mathias Kluba</owners>
+    <id>PricerTuto</id>
+    <title>PricerTuto</title>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A princing lib to price simple options (Call/Put) using Google Finance data.</description>
+    <copyright>Copyright ©  2011</copyright>
+  </metadata>
+</package>
